@@ -8,6 +8,15 @@
     },
     {
       "path": "./apps/client"
+    },
+    {
+      "path": "./apps/admin-e2e"
+    },
+    {
+      "path": "./apps/admin"
+    },
+    {
+      "path": "./apps/client-e2e"
     }
   ]
 }

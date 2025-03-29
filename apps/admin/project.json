@@ -1,0 +1,30 @@
+{
+    "name": "@clear-budget/admin",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/admin/src",
+    "targets": {
+      "dev": {
+        "executor": "@nx/next:dev-server",
+        "options": {
+          "buildTarget": "@clear-budget/admin:build"
+        }
+      },
+      "build": {
+        "executor": "@nx/next:build",
+        "outputs": ["{options.outputPath}"],
+        "options": {
+          "outputPath": "dist/apps/admin"
+        }
+      },
+      "serve": {
+        "executor": "@nx/next:server",
+        "options": {
+          "buildTarget": "@clear-budget/admin:build",
+          "dev": true
+        }
+      }
+    },
+    "tags": []
+  }
+  

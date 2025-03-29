@@ -34,8 +34,8 @@
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
-    "../../apps/client/.next/types/**/*.ts",
-    "../../dist/apps/client/.next/types/**/*.ts",
+    "../../apps/admin/.next/types/**/*.ts",
+    "../../dist/apps/admin/.next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.js",
     "src/**/*.jsx",

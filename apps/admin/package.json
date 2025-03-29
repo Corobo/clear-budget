@@ -1,5 +1,5 @@
 {
-  "name": "@clear-budget/client",
+  "name": "@clear-budget/admin",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

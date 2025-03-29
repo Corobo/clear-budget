@@ -1,10 +1,10 @@
 {
-  "name": "@clear-budget/client-e2e",
+  "name": "@clear-budget/admin-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@clear-budget/client"
+      "@clear-budget/admin"
     ]
   }
 }
