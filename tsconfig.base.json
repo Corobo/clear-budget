@@ -16,6 +16,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@clear-budget/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@clear-budget/shared/ui/*": ["libs/shared/ui/src/*"]
+    },
     "customConditions": ["development"]
   }
 }
