@@ -16,22 +16,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export interface MenuItem {
+export interface AppShellMenu {
   label: string;
   icon?: React.ReactNode;
-  children: {
-    label: string;
-    route: string;
-  }[];
+  children: { label: string; route: string }[];
 }
 
-interface MainLayoutProps {
+interface AppShellProps {
   children: React.ReactNode;
+  menuItems: AppShellMenu[];
   title?: string;
-  menuItems: MenuItem[];
 }
 
-export function AppLayout({ children, menuItems, title = 'ClearBudget' }: MainLayoutProps) {
+export function AppLayout({ children, menuItems, title = 'ClearBudget' }: AppShellProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 

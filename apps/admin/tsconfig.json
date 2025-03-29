@@ -20,28 +20,17 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
     "types": [
       "jest",
       "node"
     ],
     "outDir": "dist",
-    "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
-    "../../apps/admin/.next/types/**/*.ts",
-    "../../dist/apps/admin/.next/types/**/*.ts",
-    "next-env.d.ts",
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts"
+  "next-env.d.ts",
+  "**/*.ts",
+  "**/*.tsx"
   ],
   "exclude": [
     "out-tsc",
