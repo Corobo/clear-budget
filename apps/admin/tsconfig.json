@@ -30,8 +30,9 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    ".next/types/**/*.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    "../../dist/apps/admin/.next/types/**/*.ts"
   ],
   "exclude": [
     "out-tsc",

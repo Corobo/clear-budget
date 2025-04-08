@@ -1,7 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { CategoryList, Category, CategoryEditDialog } from '@clear-budget/shared/ui';
+import { useState, useMemo, useCallback } from 'react';
+import {
+  CategoryList,
+  Category,
+  CategoryEditDialog,
+} from '@clear-budget/shared/ui';
 import {
   Typography,
   Container,
@@ -11,67 +15,79 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
+import {
+  useCategories,
+  useCreateCategory,
+  useEditCategory,
+  useDeleteCategory,
+} from '@clear-budget/shared/api';
+
 const AdminCategoryPage = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const endpoint = 'http://localhost:5000/api/categories/admin';
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-  useEffect(() => {
-    fetchCategories();
+  const { categories, loading, error } = useCategories(`${endpoint}?t=${refreshTrigger}`);
+  const { createCategory } = useCreateCategory(endpoint);
+  const { editCategory } = useEditCategory(endpoint);
+  const { deleteCategory } = useDeleteCategory(endpoint);
+
+  const refetchCategories = useCallback(() => {
+    setRefreshTrigger((prev) => prev + 1);
   }, []);
 
-  const fetchCategories = async () => {
-    setLoading(true);
-    const res = await fetch('/api/admin/categories');
-    const data = await res.json();
-    setCategories(data);
-    setLoading(false);
-  };
+  const sortedCategories = useMemo(() => {
+    return [...categories].sort((a, b) => a.name.localeCompare(b.name));
+  }, [categories]);
 
-  const handleEdit = (category: Category) => {
+  const handleEdit = useCallback((category: Category) => {
     setSelectedCategory(category);
     setDialogOpen(true);
-  };
+  }, []);
 
-  const handleDelete = async (id: string) => {
-    await fetch(`/api/admin/categories/${id}`, { method: 'DELETE' });
-    fetchCategories();
-  };
-
-  const handleSave = async (updated: Category) => {
-    await fetch(`/api/admin/categories/${updated.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updated),
-    });
-    setDialogOpen(false);
-    fetchCategories();
-  };
-
-  const handleCreate = () => {
-    setSelectedCategory({ id: '', name: '', icon: '' });
+  const handleCreate = useCallback(() => {
+    setSelectedCategory({ id: '', name: '', color: '' });
     setDialogOpen(true);
-  };
+  }, []);
+
+  const handleDelete = useCallback(async (id: string) => {
+    await deleteCategory(id);
+    refetchCategories();
+  }, [deleteCategory, refetchCategories]);
+
+  const handleSave = useCallback(async (category: Category) => {
+    if (category.id) {
+      await editCategory(category);
+    } else {
+      await createCategory({ name: category.name, color: category.color });
+    }
+    setDialogOpen(false);
+    refetchCategories();
+  }, [editCategory, createCategory, refetchCategories]);
+
+  if (loading) return <CircularProgress />;
+  if (error) return <Typography color="error">Error: {error}</Typography>;
 
   return (
     <Container sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>Admin Categories</Typography>
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <CategoryList
-          categories={categories}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
-      )}
+
+      <CategoryList
+        categories={sortedCategories}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
 
       <CategoryEditDialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
         category={selectedCategory}
         onSave={handleSave}
+        title={selectedCategory?.id ? 'Edit Category' : 'Create Category'}
+        editMode={!!selectedCategory?.id}
+        existingCategories={categories}
       />
 
       <Box position="fixed" bottom={32} right={32}>
