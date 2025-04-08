@@ -20,7 +20,9 @@
     "rootDir": ".",
     "paths": {
       "@clear-budget/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@clear-budget/shared/ui/*": ["libs/shared/ui/src/*"]
+      "@clear-budget/shared/ui/*": ["libs/shared/ui/src/*"],
+      "@clear-budget/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@clear-budget/shared/auth/*": ["libs/shared/auth/src/*"]
     },
     "customConditions": ["development"]
   }
