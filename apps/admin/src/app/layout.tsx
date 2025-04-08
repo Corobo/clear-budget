@@ -1,7 +1,6 @@
 import './global.css';
 import { AppLayout } from '@clear-budget/shared/ui';
 import SettingsIcon from '@mui/icons-material/Settings';
-import ShieldIcon from '@mui/icons-material/Security';
 
 export const metadata = {
   title: 'Welcome to admin',
@@ -11,26 +10,17 @@ export const metadata = {
 
 export const adminMenu = [
   {
-    label: 'Gestión',
+    label: 'Management',
     icon: <SettingsIcon />,
     children: [
-      { label: 'Usuarios', route: '/usuarios' },
-      { label: 'Roles', route: '/roles' },
-      { label: 'Permisos', route: '/permisos' }
+      { label: 'Categories', route: '/categories' },
     ]
   },
-  {
-    label: 'Auditoría',
-    icon: <ShieldIcon />,
-    children: [
-      { label: 'Logs', route: '/auditoria/logs' }
-    ]
-  }
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>
         <AppLayout title='Clear Budget' menuItems={adminMenu}>{children}</AppLayout>
       </body>
