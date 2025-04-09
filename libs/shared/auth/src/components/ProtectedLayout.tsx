@@ -1,21 +1,25 @@
 'use client';
 
 import { useSession, signIn } from 'next-auth/react';
-import { CircularProgress, Box } from '@mui/material';
+import { CircularProgress, Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 
 interface Props {
   children: React.ReactNode;
+  allowedRoles?: string[];
 }
 
-export const ProtectedLayout = ({ children }: Props) => {
+export const ProtectedLayout = ({ children, allowedRoles }: Props) => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      signIn('keycloak');
+    const hasRefreshError = (session as any)?.error === 'RefreshAccessTokenError';
+
+    if (status === 'unauthenticated' || hasRefreshError) {
+      console.warn('Session expired or refresh failed. Redirecting to login...');
+      signIn('keycloak', { callbackUrl: window.location.href });
     }
-  }, [status]);
+  }, [session, status]);
 
   if (status === 'loading') {
     return (
@@ -26,6 +30,15 @@ export const ProtectedLayout = ({ children }: Props) => {
   }
 
   if (!session) return null;
+
+  const userRoles: string[] = (session as any).decodedToken?.realm_access?.roles || [];
+  if (allowedRoles && !allowedRoles.some((role) => userRoles.includes(role))) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography variant="h6">Access Denied</Typography>
+      </Box>
+    );
+  }
 
   return <>{children}</>;
 };

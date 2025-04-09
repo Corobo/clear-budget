@@ -17,7 +17,7 @@ export const adminMenu = [
 export default function ClientAppLayout({ children }: { children: ReactNode }) {
   return (
     <SessionProvider>
-      <ProtectedLayout>
+      <ProtectedLayout allowedRoles={['clear-budget-admin', 'clear-budget']}>
         <AppLayout title="Clear Budget" menuItems={adminMenu}>
           {children}
         </AppLayout>

@@ -1,6 +1,7 @@
 import KeycloakProvider from 'next-auth/providers/keycloak';
 import { JWT } from 'next-auth/jwt';
 import { NextAuthOptions } from 'next-auth';
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 async function refreshAccessToken(token: JWT): Promise<JWT> {
   try {
@@ -66,6 +67,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       session.accessToken = token.accessToken;
       session.error = token.error;
+      session.decodedToken = jwtDecode<JwtPayload>(token.accessToken);
       return session;
     },
   },
