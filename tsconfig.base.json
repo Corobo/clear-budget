@@ -16,6 +16,16 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@clear-budget/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@clear-budget/shared/ui/*": ["libs/shared/ui/src/*"],
+      "@clear-budget/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@clear-budget/shared/auth/*": ["libs/shared/auth/src/*"],
+      "@clear-budget/shared/api": ["libs/shared/api/src/index.ts"],
+      "@clear-budget/shared/api/*": ["libs/shared/api/src/*"]
+    },
     "customConditions": ["development"]
   }
 }

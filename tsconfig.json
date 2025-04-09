@@ -17,6 +17,9 @@
     },
     {
       "path": "./apps/client-e2e"
+    },
+    {
+      "path": "./libs/shared/ui"
     }
   ]
 }
