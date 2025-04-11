@@ -24,6 +24,7 @@ export const useCategories = (endpoint: string): UseCategoriesResult => {
   useEffect(() => {
     const load = async () => {
       try {
+        console.log('Fetching categories from:', endpoint);
         const res = await fetchWithAuth(endpoint);
         const data = await res.json();
         setCategories(data);

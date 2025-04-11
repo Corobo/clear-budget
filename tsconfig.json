@@ -20,6 +20,12 @@
     },
     {
       "path": "./libs/shared/ui"
+    },
+    {
+      "path": "./libs/shared/auth"
+    },
+    {
+      "path": "./libs/shared/api"
     }
   ]
 }

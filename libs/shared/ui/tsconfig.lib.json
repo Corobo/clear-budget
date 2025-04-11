@@ -9,7 +9,6 @@
       "next",
       "@nx/next/typings/image.d.ts"
     ],
-    "rootDir": "src",
     "jsx": "react-jsx",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
@@ -29,5 +28,9 @@
     "eslint.config.cjs",
     "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [   "**/*.ts",
+  "**/*.tsx",
+  ".next/types/**/*.ts",
+  "next-env.d.ts",
+  "../../dist/apps/admin/.next/types/**/*.ts"]
 }

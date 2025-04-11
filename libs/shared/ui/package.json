@@ -13,5 +13,9 @@
   },
   "nx": {
     "name": "ui"
-  }
+  },
+  "include": [
+      "src/**/*",
+      "package.json"
+    ]
 }
