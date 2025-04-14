@@ -1,7 +1,6 @@
 'use client';
 
 import { useFetchWithAuth } from '../lib/fetch-with-auth';
-import { Category } from './useCategories';
 
 export const useEditCategory = (baseEndpoint: string) => {
   const fetchWithAuth = useFetchWithAuth();

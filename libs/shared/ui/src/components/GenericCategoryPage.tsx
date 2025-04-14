@@ -23,9 +23,10 @@ import { CategoryEditDialog } from './CategoryEditDialog';
 interface GenericCategoryPageProps {
   endpoint: string;
   title: string;
+  isAdminApp?: boolean;
 }
 
-export const GenericCategoryPage = ({ endpoint, title }: GenericCategoryPageProps) => {
+export const GenericCategoryPage = ({ endpoint, title, isAdminApp = false }: GenericCategoryPageProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -49,7 +50,7 @@ export const GenericCategoryPage = ({ endpoint, title }: GenericCategoryPageProp
   }, []);
 
   const handleCreate = useCallback(() => {
-    setSelectedCategory({ id: '', name: '', color: '' });
+    setSelectedCategory({ id: '', name: '', color: '', isAdmin: isAdminApp });
     setDialogOpen(true);
   }, []);
 
@@ -62,7 +63,7 @@ export const GenericCategoryPage = ({ endpoint, title }: GenericCategoryPageProp
     if (category.id) {
       await editCategory(category);
     } else {
-      await createCategory({ name: category.name, color: category.color });
+      await createCategory({ name: category.name, color: category.color, isAdmin: category.isAdmin });
     }
     setDialogOpen(false);
     refetchCategories();
@@ -79,6 +80,7 @@ export const GenericCategoryPage = ({ endpoint, title }: GenericCategoryPageProp
         categories={sortedCategories}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        isAdminApp={isAdminApp}
       />
 
       <CategoryEditDialog

@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useFetchWithAuth } from '../lib/fetch-with-auth';
-
-export interface Category {
-  id: string;
-  name: string;
-  color: string;
-}
+import { Category } from '@clear-budget/shared/models';
 
 interface UseCategoriesResult {
   categories: Category[];

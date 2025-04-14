@@ -24,7 +24,9 @@
       "@clear-budget/shared/auth": ["libs/shared/auth/src/index.ts"],
       "@clear-budget/shared/auth/*": ["libs/shared/auth/src/*"],
       "@clear-budget/shared/api": ["libs/shared/api/src/index.ts"],
-      "@clear-budget/shared/api/*": ["libs/shared/api/src/*"]
+      "@clear-budget/shared/api/*": ["libs/shared/api/src/*"],
+      "@clear-budget/shared/models": ["libs/shared/models/src/index.ts"],
+      "@clear-budget/shared/models/*": ["libs/shared/models/src/*"]
     },
     "customConditions": ["development"]
   }

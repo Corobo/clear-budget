@@ -10,7 +10,7 @@ import {
   Box,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { Category } from './CategoryList';
+import { Category } from '@clear-budget/shared/models';
 
 interface Props {
   open: boolean;

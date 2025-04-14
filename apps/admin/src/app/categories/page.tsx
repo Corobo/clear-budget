@@ -5,6 +5,7 @@ const AdminCategoryPage = () => (
   <GenericCategoryPage
     endpoint="http://localhost:5000/api/categories/admin"
     title="Admin Categories"
+    isAdminApp={true}
   />
 );
 

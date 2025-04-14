@@ -18,7 +18,7 @@ export default function ClientAppLayout({ children }: { children: ReactNode }) {
   return (
     <SessionProvider>
       <ProtectedLayout allowedRoles={['clear-budget']}>
-        <AppLayout title="Clear Budget" menuItems={adminMenu}>
+        <AppLayout title="Clear Budget" menuItems={adminMenu} >
           {children}
         </AppLayout>
       </ProtectedLayout>
