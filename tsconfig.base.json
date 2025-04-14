@@ -26,7 +26,9 @@
       "@clear-budget/shared/api": ["libs/shared/api/src/index.ts"],
       "@clear-budget/shared/api/*": ["libs/shared/api/src/*"],
       "@clear-budget/shared/models": ["libs/shared/models/src/index.ts"],
-      "@clear-budget/shared/models/*": ["libs/shared/models/src/*"]
+      "@clear-budget/shared/models/*": ["libs/shared/models/src/*"],
+      "@clear-budget/client/client-ui": ["libs/client/ui/src/index.ts"],
+      "@clear-budget/client/client-ui/*": ["libs/client/ui/src/*"]
     },
     "customConditions": ["development"]
   }
