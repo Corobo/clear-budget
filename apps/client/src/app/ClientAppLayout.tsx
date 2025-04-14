@@ -10,7 +10,9 @@ export const adminMenu = [
   {
     label: 'Management',
     icon: <SettingsIcon />,
-    children: [{ label: 'Categories', route: '/categories' }],
+    children: [{ label: 'Categories', route: '/categories' },
+      { label: 'Transactions', route: '/transactions' }
+    ],
   },
 ];
 

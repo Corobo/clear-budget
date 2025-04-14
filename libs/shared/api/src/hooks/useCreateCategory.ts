@@ -1,5 +1,6 @@
 'use client';
 
+import { Category } from '@clear-budget/shared/models';
 import { useFetchWithAuth } from '../lib/fetch-with-auth';
 
 export const useCreateCategory = (endpoint: string) => {

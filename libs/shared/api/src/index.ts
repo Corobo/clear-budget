@@ -2,4 +2,8 @@ export * from './hooks/useCategories';
 export * from './hooks/useCreateCategory';
 export * from './hooks/useEditCategory';
 export * from './hooks/useDeleteCategory';
+export * from './hooks/useTransactions';
+export * from './hooks/useCreateTransaction';
+export * from './hooks/useEditTransaction';
+export * from './hooks/useDeleteTransaction';
 export * from './lib/fetch-with-auth';
